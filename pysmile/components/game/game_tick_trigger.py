@@ -1,6 +1,6 @@
-from src.game_component import GameComponent
+from pysmile.game_component import GameComponent
 from .game_event_manager import GameEventManagerComponent
-from src.events.update import UpdateEvent
+from pysmile.events.update import UpdateEvent
 
 
 class GameTickTriggerComponent(GameComponent):

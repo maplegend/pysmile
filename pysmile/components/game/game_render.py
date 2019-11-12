@@ -1,6 +1,6 @@
-from src.game_component import GameComponent
-from src.game_renderer import GameRender
-from src.game_screen import GameScreen
+from pysmile.game_component import GameComponent
+from pysmile.game_renderer import GameRender
+from pysmile.game_screen import GameScreen
 
 
 class GameRendererComponent(GameComponent):

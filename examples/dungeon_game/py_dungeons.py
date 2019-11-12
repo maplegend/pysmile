@@ -1,21 +1,21 @@
 import pygame
 import random
-from src.game import Game
-from src.entity import Entity
-from src.components.renderer import RendererComponent
-from src.components.transform import TransformComponent
-from src.components.exit_on_escape import ExitOnEscape
-from src.components.move import MoveComponent
-from src.components.key_control import KeyControlComponent
-from src.components.collisions.tile_map_collider import TileMapCollider
-from src.components.collisions.box_collider import BoxCollider
-from src.components.name import NameComponent
-from src.tilemap.tilemap import TileMap
-from src.tilemap.tileset import TileSet
-from src.tilemap.tilemap_renderer import TileMapRenderer
-from src.renderers.tile_renderer import TileRenderer
-from src.math.vector2 import Vector2
-from src.renderers.image_renderer import ImageRenderer
+from pysmile.game import Game
+from pysmile.entity import Entity
+from pysmile.components.renderer import RendererComponent
+from pysmile.components.transform import TransformComponent
+from pysmile.components.exit_on_escape import ExitOnEscape
+from pysmile.components.move import MoveComponent
+from pysmile.components.key_control import KeyControlComponent
+from pysmile.components.collisions.tile_map_collider import TileMapCollider
+from pysmile.components.collisions.box_collider import BoxCollider
+from pysmile.components.name import NameComponent
+from pysmile.tilemap.tilemap import TileMap
+from pysmile.tilemap.tileset import TileSet
+from pysmile.tilemap.tilemap_renderer import TileMapRenderer
+from pysmile.renderers.tile_renderer import TileRenderer
+from pysmile.math.vector2 import Vector2
+from pysmile.renderers.image_renderer import ImageRenderer
 
 
 class PyDungeons:

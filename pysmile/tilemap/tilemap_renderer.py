@@ -1,6 +1,6 @@
 import pygame
-from src.renderer import Renderer
-from src.renderers.tile_renderer import TileRenderer
+from pysmile.renderer import Renderer
+from pysmile.renderers.tile_renderer import TileRenderer
 from .tilemap import TileMap
 from OpenGL.GL import *
 

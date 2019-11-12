@@ -1,7 +1,7 @@
 import pygame
-from src.game_component import GameComponent
+from pysmile.game_component import GameComponent
 from .game_event_manager import GameEventManagerComponent
-from src.events.key_pressed import KeyPressedEvent
+from pysmile.events.key_pressed import KeyPressedEvent
 
 
 class GameKeyPressComponent(GameComponent):

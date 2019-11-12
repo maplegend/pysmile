@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from src.component import Component
+from pysmile.component import Component
 from ..game.collision_handler import GameCollisionsHandlerComponent
 
 

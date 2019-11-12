@@ -1,6 +1,6 @@
 import pygame
-from src.math.rect import Rect
-from src.game_component import GameComponent
+from pysmile.math.rect import Rect
+from pysmile.game_component import GameComponent
 
 
 class GameCollisionsHandlerComponent(GameComponent):

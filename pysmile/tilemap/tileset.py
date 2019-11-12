@@ -1,5 +1,5 @@
-from src.gl.gl_texture import GLTexture
-from src.math.rect import Rect
+from pysmile.gl.gl_texture import GLTexture
+from pysmile.math.rect import Rect
 from .tile_texture import TileTexture, AnimatedTileTexture
 
 

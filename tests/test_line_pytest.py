@@ -1,6 +1,6 @@
 import pytest
-from src.math.line_segment import LineSegment
-from src.math.vector2 import Vector2
+from pysmile.math.line_segment import LineSegment
+from pysmile.math.vector2 import Vector2
 
 
 def test_equation():

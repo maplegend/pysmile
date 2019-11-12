@@ -1,6 +1,6 @@
 import pygame
-from src.renderer import Renderer
-from src.tilemap.tile_texture import AnimatedTileTexture
+from pysmile.renderer import Renderer
+from pysmile.tilemap.tile_texture import AnimatedTileTexture
 from OpenGL.GL import *
 
 

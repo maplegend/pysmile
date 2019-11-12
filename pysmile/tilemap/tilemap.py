@@ -1,8 +1,8 @@
 import pygame
-from src.component import Component
-from src.components.transform import TransformComponent
+from pysmile.component import Component
+from pysmile.components.transform import TransformComponent
 from .tile import Tile
-from src.math.rect import Rect
+from pysmile.math.rect import Rect
 
 
 class TileMap(Component):

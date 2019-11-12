@@ -1,7 +1,7 @@
 import pygame
-from src.renderer import Renderer
-from src.components.transform import TransformComponent
-from src.colors import white, black
+from pysmile.renderer import Renderer
+from pysmile.components.transform import TransformComponent
+from pysmile.colors import white, black
 
 
 class TextRenderer(Renderer):

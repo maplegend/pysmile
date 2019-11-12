@@ -1,5 +1,5 @@
-from src.math.rect import Rect
-from src.math.vector2 import Vector2
+from pysmile.math.rect import Rect
+from pysmile.math.vector2 import Vector2
 from .collider import Collider
 from ..transform import TransformComponent
 

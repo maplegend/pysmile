@@ -1,5 +1,5 @@
-from src.game_component import GameComponent
-from src.event_manager import EventManager
+from pysmile.game_component import GameComponent
+from pysmile.event_manager import EventManager
 
 
 class GameEventManagerComponent(GameComponent):

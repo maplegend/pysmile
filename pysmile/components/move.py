@@ -1,10 +1,10 @@
 from ..component import Component
 from .transform import TransformComponent
 from ..events.update import UpdateEvent
-from src.math.vector2 import Vector2
+from pysmile.math.vector2 import Vector2
 from .collisions.collider import Collider
 from .renderer import RendererComponent
-from src.renderers.tile_renderer import TileRenderer
+from pysmile.renderers.tile_renderer import TileRenderer
 from .game.collision_handler import GameCollisionsHandlerComponent
 
 

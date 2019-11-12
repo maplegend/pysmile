@@ -1,7 +1,7 @@
 import pygame
 from ..renderer import Renderer
-from src.gl.c_image import CImage
-from src.gl.gl_texture import GLTexture
+from pysmile.gl.c_image import CImage
+from pysmile.gl.gl_texture import GLTexture
 from OpenGL.GL import *
 
 

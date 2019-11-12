@@ -1,5 +1,5 @@
 from .component_storage import ComponentStorage
-from src.components.game.game_event_manager import GameEventManagerComponent
+from pysmile.components.game.game_event_manager import GameEventManagerComponent
 
 
 class Entity:
