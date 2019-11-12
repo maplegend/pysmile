@@ -19,7 +19,6 @@ from pysmile.renderers.image_renderer import ImageRenderer
 
 
 class PyDungeons:
-
     @staticmethod
     def build_wall_rect(map, rect):
         for y in range(rect.height):
