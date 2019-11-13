@@ -5,6 +5,10 @@ from ..events.key_pressed import KeyPressedEvent
 
 class KeyControlComponent(Component):
     def __init__(self, bindings):
+        """
+        Bind specified keys to move player through MoveComponent
+        bindings: array of keys that needed to bind [left key, right key, up key, down key]
+        """
         super().__init__()
         self.entity = None
         self.bindings = bindings

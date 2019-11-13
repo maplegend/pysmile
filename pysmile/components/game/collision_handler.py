@@ -26,7 +26,6 @@ class GameCollisionsHandlerComponent(GameComponent):
 
     def check_line_collision(self, line):
         for coll in self.colliders:
-            # r = coll.get_collider()
             if isinstance(coll, Rect):
                 return coll.intersect_line(line)
 

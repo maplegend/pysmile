@@ -3,6 +3,7 @@ from OpenGL.GL import *
 from .components.renderer import RendererComponent
 from .components.transform import TransformComponent
 from .stopwatch import Stopwatch
+from .math.rect import Rect
 
 
 class GameRender:
@@ -18,7 +19,7 @@ class GameRender:
             trans = ent.get_component(TransformComponent)
             if not rend or not trans:
                 continue
-            rend.render(pygame.Rect(*trans.xy, *rend.size), ent)
+            rend.render(Rect(*trans.xy, *rend.size), ent)
 
         pygame.display.flip()
         self.ticks += 1

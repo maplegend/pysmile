@@ -9,3 +9,7 @@ class Renderer(ABC):
     @abstractmethod
     def render(self, entity, rect):
         pass
+
+
+class PyGameRenderer(Renderer, ABC):
+    pass

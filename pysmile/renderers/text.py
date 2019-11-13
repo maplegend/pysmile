@@ -1,6 +1,5 @@
 import pygame
 from pysmile.renderer import Renderer
-from pysmile.components.transform import TransformComponent
 from pysmile.colors import white, black
 
 
@@ -10,10 +9,9 @@ class TextRenderer(Renderer):
         self.color = color
         self.background_color = background_color
         self.text = text
+        self.old_text = ""
         self.font = pygame.font.Font(pygame.font.get_default_font(), font_size)
+        self.texture = None
 
-    def render(self, screen, entity):
-        text = self.font.render(self.text, True, black, white)
-        screen.fill(white)
-        rect = entity.get_component(TransformComponent).rect
-        screen.blit(text, (0, 0, rect.width, rect.height))
+    def render(self, entity, rect):
+        return self.font.render(self.text, True, black, white)

@@ -10,6 +10,13 @@ from .game.collision_handler import GameCollisionsHandlerComponent
 
 class MoveComponent(Component):
     def __init__(self, acceleration, max_speed, normalize=True, flip=True):
+        """
+        Init move component
+        :param acceleration: how fast will be velocity increasing
+        :param max_speed: maximum velocity
+        :param normalize: normalize output vector i.e. move to all directions with same speed
+        :param flip: flip texture when direction changed from left to right or vice versa
+        """
         super().__init__()
         self.velocity = Vector2()
         self.direction = Vector2()

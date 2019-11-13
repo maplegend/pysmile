@@ -15,7 +15,6 @@ from pysmile.tilemap.tileset import TileSet
 from pysmile.tilemap.tilemap_renderer import TileMapRenderer
 from pysmile.renderers.tile_renderer import TileRenderer
 from pysmile.math.vector2 import Vector2
-from pysmile.renderers.image_renderer import ImageRenderer
 
 
 class PyDungeons:
@@ -44,7 +43,7 @@ class PyDungeons:
     def start():
         pygame.init()
         pygame.display.set_caption('PyDungeon')
-        size = width, height = (640, 480)
+        size = (640, 480)
         game = Game()
         game.setup_default_components(size)
         scene = game.scene
@@ -73,13 +72,10 @@ class PyDungeons:
 
         player.add_component(MoveComponent(1, 2))
         player.add_component(KeyControlComponent(key_bindings))
-        #player.add_component(ScreenBoundsCollisionHandler(pygame.Rect(0, 0, width, height)))
         player.add_component(TransformComponent(Vector2(100, 100)))
         player.add_component(BoxCollider((16*2, 22*2), Vector2(0, 12)))
         player.add_component(RendererComponent(TileRenderer(ts.tiles["knight_f_idle_anim"], ts), (16*2, 28*2)))
-        #player.add_component(RendererComponent(ImageRenderer("assets/tileset.png"), (1000, 1000)))
 
         game.add_component(ExitOnEscape())
 
         game.run()
-
