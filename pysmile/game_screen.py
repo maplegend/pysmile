@@ -23,6 +23,9 @@ class GameScreen:
 
         self.size = self.find_best_size(size[0], size[1])
         self.screen = pygame.display.set_mode(size, self.display_mod)
+        # pygame.display.gl_set_attribute(pygame.GL_MAJOR_VERSION, 3)
+        # pygame.display.gl_set_attribute(GL_MINOR_VERSION, 2)
+        # pygame.display.gl_set_attribute(GL_CONTEXT_PROFILE_MASK, GL_CONTEXT_CORE_PROFILE_BIT)
 
         glClearColor(0.0, 0.0, 0.0, 1.0)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)

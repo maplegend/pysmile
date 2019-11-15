@@ -68,6 +68,14 @@ class GLTexture:
     def create_tex_dl(texture, width, height):
         new_list = glGenLists(1)
         glNewList(new_list, GL_COMPILE)
+        GLTexture.render_texture(texture, (width, height))
+        glEnd()
+        glEndList()
+
+        return new_list
+
+    @staticmethod
+    def render_texture(texture, size):
         glBindTexture(GL_TEXTURE_2D, texture)
         glBegin(GL_QUADS)
 
@@ -77,16 +85,12 @@ class GLTexture:
 
         # Top Left Of The Texture and Quad
         glTexCoord2f(0, 0)
-        glVertex2f(0, height)
+        glVertex2f(0, size[1])
 
         # Top Right Of The Texture and Quad
         glTexCoord2f(1, 0)
-        glVertex2f(width, height)
+        glVertex2f(size[0], size[1])
 
         # Bottom Right Of The Texture and Quad
         glTexCoord2f(1, 1)
-        glVertex2f(width, 0)
-        glEnd()
-        glEndList()
-
-        return new_list
+        glVertex2f(size[0], 0)

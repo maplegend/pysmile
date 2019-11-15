@@ -1,6 +1,7 @@
 import pygame
 from .renderer import RendererComponent
 from OpenGL.GL import *
+from ..gl.gl_texture import GLTexture
 
 
 class PyGameRendererComponent(RendererComponent):
@@ -30,25 +31,7 @@ class PyGameRendererComponent(RendererComponent):
 
             newlist = glGenLists(1)
             glNewList(newlist, GL_COMPILE)
-            glBindTexture(GL_TEXTURE_2D, texture)
-            glBegin(GL_QUADS)
-
-            # Bottom Left Of The Texture and Quad
-            glTexCoord2f(0, 1)
-            glVertex2f(0, 0)
-
-            # Top Left Of The Texture and Quad
-            glTexCoord2f(0, 0)
-            glVertex2f(0, rect.height)
-
-            # Top Right Of The Texture and Quad
-            glTexCoord2f(1, 0)
-            glVertex2f(rect.width, rect.height)
-
-            # Bottom Right Of The Texture and Quad
-            glTexCoord2f(1, 1)
-            glVertex2f(rect.width, 0)
-            glEnd()
+            GLTexture.render_texture(texture, rect.size)
             glEndList()
             self.displaylist = newlist
             self.need_redraw = False
