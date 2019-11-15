@@ -20,11 +20,11 @@ class GameRender:
             if not rend or not trans:
                 continue
             if rend.shader is not None:
+                rend.shader.uniform_rect = (*trans.xy, *rend.size)
                 rend.shader.use()
             rend.render(Rect(*trans.xy, *rend.size), ent)
             if rend.shader is not None:
                 rend.shader.unuse()
-
 
         pygame.display.flip()
         self.ticks += 1

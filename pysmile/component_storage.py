@@ -16,7 +16,7 @@ class ComponentStorage:
         self._components = [cm for cm in self._components if not isinstance(cm, component)]
 
     def contains_component(self, component):
-        return len([c for c in self._components if isinstance(c, component)]) > 0
+        return self.get_component(component) is not None
 
     def get_components(self):
         return self._components

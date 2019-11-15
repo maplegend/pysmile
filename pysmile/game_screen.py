@@ -22,10 +22,14 @@ class GameScreen:
         self.display_mod = pygame.OPENGL | pygame.DOUBLEBUF
 
         self.size = self.find_best_size(size[0], size[1])
+
+        pygame.display.gl_set_attribute(pygame.GL_CONTEXT_PROFILE_MASK, pygame.GL_CONTEXT_PROFILE_COMPATIBILITY)
+        pygame.display.gl_set_attribute(pygame.GL_CONTEXT_FLAGS, GL_CONTEXT_FLAG_FORWARD_COMPATIBLE_BIT)
+        #pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MAJOR_VERSION, 3)
+        #pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MINOR_VERSION, 1)
+
         self.screen = pygame.display.set_mode(size, self.display_mod)
-        # pygame.display.gl_set_attribute(pygame.GL_MAJOR_VERSION, 3)
-        # pygame.display.gl_set_attribute(GL_MINOR_VERSION, 2)
-        # pygame.display.gl_set_attribute(GL_CONTEXT_PROFILE_MASK, GL_CONTEXT_CORE_PROFILE_BIT)
+        print("Supported shaders version: {}".format(glGetString(GL_SHADING_LANGUAGE_VERSION)))
 
         glClearColor(0.0, 0.0, 0.0, 1.0)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)

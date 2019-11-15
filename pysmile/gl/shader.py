@@ -1,4 +1,5 @@
 from OpenGL.GL import *
+from collections import Iterable
 
 
 class Shader:
@@ -13,6 +14,8 @@ class Shader:
 
         glAttachShader(self.program_id, vs_id)
         glAttachShader(self.program_id, frag_id)
+        glBindAttribLocation(self.program_id, 0, "in_Position");
+        glBindAttribLocation(self.program_id, 1, "in_Color");
         glLinkProgram(self.program_id)
 
         if glGetProgramiv(self.program_id, GL_LINK_STATUS) != GL_TRUE:
@@ -25,24 +28,10 @@ class Shader:
         glDeleteShader(frag_id)
 
     def __setattr__(self, key, value):
-        """Set custom uniform value like 'shader.uniform_value = value'. Now support only int and float"""
+        """Set custom uniform value like 'shader.uniform_value = value'. Now support only int, float and vectors"""
         if key.startswith(self.uniform_prefix):
             key = key[len(self.uniform_prefix):]
-            loc = self.get_uniform_location(key)
-            print(loc, key)
-            if loc == -1:
-                raise AttributeError
-
-            if isinstance(value, float):
-                self.uniforms[key] = (glUniform1f, loc, value)
-
-            elif isinstance(value, int):
-                self.uniforms[key] = (glUniform1i, loc, value)
-            else:
-                raise AttributeError
-
-            if self.using:
-                self.update_unifroms()
+            self.set_uniform(key, value)
         else:
             object.__setattr__(self, key, value)
 
@@ -53,8 +42,47 @@ class Shader:
         else:
             return object.__getattribute__(self, attr)
 
+    def set_uniform(self, key, value):
+        loc = self.get_uniform_location(key)
+        if loc == -1:
+            raise AttributeError
+
+        fu = None  # GL function
+        if isinstance(value, float):
+            fu = glUniform1f
+        elif isinstance(value, int):
+            fu = glUniform1i
+        elif isinstance(value, tuple):
+            if isinstance(value[0], float):
+                if len(value) == 2:
+                    fu = glUniform2f
+                elif len(value) == 3:
+                    fu = glUniform3f
+                elif len(value) == 4:
+                    fu = glUniform4f
+            elif isinstance(value[0], int):
+                if len(value) == 2:
+                    fu = glUniform2i
+                elif len(value) == 3:
+                    fu = glUniform3i
+                elif len(value) == 4:
+                    fu = glUniform4i
+
+        if fu is None:
+            print("Invalid value {}".format(value))
+            raise AttributeError
+
+        self.uniforms[key] = (fu, loc, value)
+
+        if self.using:
+            self.update_unifroms()
+
     def update_unifroms(self):
-        [u[0](u[1], u[2]) for _, u in self.uniforms.items()]
+        for _, u in self.uniforms.items():
+            if isinstance(u[2], Iterable):
+                u[0](u[1], *u[2])
+            else:
+                u[0](u[1], u[2])
 
     def get_uniform_location(self, name):
         return glGetUniformLocation(self.program_id, name)
