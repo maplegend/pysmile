@@ -14,13 +14,14 @@ class GameRender:
 
     def draw(self):
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+        screen_size = self.game.screen_size
         for ent in self.game.scene.get_entities_with_component(RendererComponent):
             rend = ent.get_component(RendererComponent)
             trans = ent.get_component(TransformComponent)
             if not rend or not trans:
                 continue
             if rend.shader is not None:
-                rend.shader.uniform_rect = (*trans.xy, *rend.size)
+                rend.shader.uniform_rect = (trans.x, screen_size[1] - trans.y - rend.size[1], *rend.size)
                 rend.shader.use()
             rend.render(Rect(*trans.xy, *rend.size), ent)
             if rend.shader is not None:

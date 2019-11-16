@@ -16,12 +16,12 @@ class MouseColliderComponent(Component):
             return
 
         pos = pygame.mouse.get_pos()
-        pressed = pygame.mouse.get_pressed()
+        buttons = pygame.mouse.get_pressed()
         for col in collider:
             if col.collidepoint(pos):
                 self.entity.event_manager.trigger_event(HoverEvent(self.entity))
-                if pressed:
-                    self.entity.event_manager.trigger_event(ClickEvent(self.entity))
+                if True in buttons:
+                    self.entity.event_manager.trigger_event(ClickEvent(self.entity, buttons, pos))
 
     def applied_on_entity(self, entity):
         self.entity = entity

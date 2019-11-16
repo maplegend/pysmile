@@ -18,6 +18,10 @@ class Game(Entity):
         self.cached = []
         self.chash = 0
 
+    @property
+    def screen_size(self):
+        return self.get_component(GameRendererComponent).game_screen.size
+
     def setup_default_components(self, screen_size):
         self.add_component(GameEventManagerComponent())
         self.add_component(GameEventHandlerComponent())

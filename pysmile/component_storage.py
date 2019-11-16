@@ -13,6 +13,7 @@ class ComponentStorage:
         self._components.append(component)
 
     def remove_component(self, component):
+        [cm.removed() for cm in self._components if isinstance(cm, component)]
         self._components = [cm for cm in self._components if not isinstance(cm, component)]
 
     def contains_component(self, component):

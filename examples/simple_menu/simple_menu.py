@@ -14,6 +14,7 @@ from pysmile.events.click import ClickEvent
 from pysmile.events.hover import HoverEvent
 from pysmile.components.animation import AnimationComponent
 from pysmile.components.collisions.box_collider import BoxCollider
+from pysmile.components.gui.button import ButtonComponent
 
 
 class SimpleMenu:
@@ -29,19 +30,10 @@ class SimpleMenu:
         scene.add_entity(play_button)
         play_button.add_component(TransformComponent(Vector2(width/2-50, 0)))
         shader = Shader.init_from_files("assets/button_shader.vert", "assets/button_shader.frag")
-        shader.uniform_color = tuple(ti/255.0 for ti in Colors.red)
-        shader.uniform_x_coord = 1.2
         play_button.add_component(RendererComponent(RectRenderer(Colors.white), (100, 100), shader))
         play_button.add_component(BoxCollider((100, 100)))
         play_button.add_component(MouseColliderComponent())
-
-        def start_anim(_):
-            if not play_button.contains_component(AnimationComponent):
-                anim = AnimationComponent(step=-20, start=120, end=0,
-                                          function=lambda x: shader.set_uniform("x_coord", x/100.0),
-                                          completion=lambda: print("comp"))
-                play_button.add_component(anim)
-        play_button.event_manager.bind(HoverEvent, start_anim)
+        play_button.add_component(ButtonComponent(shader))
 
         exit_button = Entity()
         scene.add_entity(exit_button)

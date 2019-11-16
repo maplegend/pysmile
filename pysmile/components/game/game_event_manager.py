@@ -14,5 +14,8 @@ class GameEventManagerComponent(GameComponent):
     def bind(self, event, callback):
         self.event_manager.bind(event, callback)
 
+    def unbind(self, event, callback):
+        self.event_manager.unbind(event, callback)
+
     def game_tick(self):
         pass

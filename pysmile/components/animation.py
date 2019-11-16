@@ -24,9 +24,12 @@ class AnimationComponent(Component):
     def update(self, event):
         self.progress += self.step
         self.function(self.interpolate(self.progress))
-        if self.progress >= max(self.end, self.start):
+        if (self.start > self.end >= self.progress) or (self.start <= self.end <= self.progress):
             self.completion()
             self.entity.remove_component(AnimationComponent)
+
+    def removed(self):
+        self.entity.event_manager.unbind(UpdateEvent, self.update)
 
     def applied_on_entity(self, entity):
         self.entity = entity
