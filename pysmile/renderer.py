@@ -12,4 +12,6 @@ class Renderer(ABC):
 
 
 class PyGameRenderer(Renderer, ABC):
-    pass
+    def __init__(self):
+        super().__init__()
+        self.need_redraw = True

@@ -12,34 +12,41 @@ class PyGameRendererComponent(RendererComponent):
         :param size: entity's size that will be displayed
         """
         super().__init__(renderer, size)
-        self.need_redraw = True
         self.displaylist = None
 
     def render(self, rect, entity):
-        if self.need_redraw:
-            glLoadIdentity()
-
+        if self.renderer.need_redraw:
             img = self.renderer.render(entity, rect)
             w, h = img.get_size()
             texture = glGenTextures(1)
-            glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
             glBindTexture(GL_TEXTURE_2D, texture)
             glTexParameter(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
             glTexParameter(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
+            glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
             data = pygame.image.tostring(img, "RGBA", 1)
             glTexImage2D(GL_TEXTURE_2D, 0, 4, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, data)
 
-            newlist = glGenLists(1)
-            glNewList(newlist, GL_COMPILE)
-            GLTexture.render_texture(texture, rect.size)
+            self.displaylist = glGenLists(1)
+            glNewList(self.displaylist, GL_COMPILE)
+            glBindTexture(GL_TEXTURE_2D, texture)
+            glEnable(GL_TEXTURE_2D)
+            glBegin(GL_QUADS)
+            glTexCoord2f(0, 1)
+            glVertex2f(0, 0)
+            glTexCoord2f(1, 1)
+            glVertex2f(0 + w, 0)
+            glTexCoord2f(1, 0)
+            glVertex2f(0 + w, 0 + h)
+            glTexCoord2f(0, 0)
+            glVertex2f(0, 0 + h)
+            glEnd()
+            glDisable(GL_TEXTURE_2D)
             glEndList()
-            self.displaylist = newlist
-            self.need_redraw = False
 
+            self.renderer.need_redraw = False
+
+        glPushMatrix()
         glColor4fv((1, 1, 1, 1))
-
-        glLoadIdentity()
         glTranslate(rect.x, rect.y, 0)
-
         glCallList(self.displaylist)
-        glTranslate(-rect.x, -rect.y, 0)
+        glPopMatrix()

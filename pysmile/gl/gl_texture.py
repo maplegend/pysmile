@@ -69,7 +69,6 @@ class GLTexture:
         new_list = glGenLists(1)
         glNewList(new_list, GL_COMPILE)
         GLTexture.render_texture(texture, (width, height))
-        glEnd()
         glEndList()
 
         return new_list
@@ -94,3 +93,4 @@ class GLTexture:
         # Bottom Right Of The Texture and Quad
         glTexCoord2f(1, 1)
         glVertex2f(size[0], 0)
+        glEnd()

@@ -17,6 +17,7 @@ class Game(Entity):
         self.scene = Scene(self)
         self.cached = []
         self.chash = 0
+        self.running = True
 
     @property
     def screen_size(self):
@@ -42,6 +43,9 @@ class Game(Entity):
 
     def run(self):
         clock = pygame.time.Clock()
-        while True:
+        while self.running:
             self.game_tick()
             clock.tick(60)
+
+    def exit(self):
+        self.running = False

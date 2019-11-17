@@ -14,8 +14,8 @@ class Shader:
 
         glAttachShader(self.program_id, vs_id)
         glAttachShader(self.program_id, frag_id)
-        glBindAttribLocation(self.program_id, 0, "in_Position");
-        glBindAttribLocation(self.program_id, 1, "in_Color");
+        glBindAttribLocation(self.program_id, 0, "in_Position")
+        glBindAttribLocation(self.program_id, 1, "in_Color")
         glLinkProgram(self.program_id)
 
         if glGetProgramiv(self.program_id, GL_LINK_STATUS) != GL_TRUE:
@@ -23,7 +23,7 @@ class Shader:
             glDeleteProgram(self.program_id)
             glDeleteShader(vs_id)
             glDeleteShader(frag_id)
-            raise RuntimeError('Error linking program: %s' % (info))
+            raise RuntimeError('Error linking program: %s' % info)
         glDeleteShader(vs_id)
         glDeleteShader(frag_id)
 
@@ -45,7 +45,8 @@ class Shader:
     def set_uniform(self, key, value):
         loc = self.get_uniform_location(key)
         if loc == -1:
-            raise AttributeError
+            print("Set uniform {} with value {} failed".format(key, value))
+            return -1
 
         fu = None  # GL function
         if isinstance(value, float):

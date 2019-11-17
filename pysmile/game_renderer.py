@@ -27,5 +27,9 @@ class GameRender:
             if rend.shader is not None:
                 rend.shader.unuse()
 
+        er = glGetError()
+        if er != 0:
+            print("ERROR: GL error: {}".format(er))
+
         pygame.display.flip()
         self.ticks += 1

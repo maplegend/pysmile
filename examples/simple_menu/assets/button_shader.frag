@@ -10,10 +10,10 @@ varying vec2 position;
 
 
 void main() {
-    vec2 uv = (gl_FragCoord.xy - rect.xy ) / rect.zw;
-    vec2 pos = (click_pos - rect.xy) / rect.zw;
-    vec4 col = mix(hover_color, main_color, uv.x - (hover_progress-1.0));
-    col = mix(click_color, col, step(0.1, distance(pos, uv)-click_progress));
+    vec2 uv = (gl_FragCoord.xy - rect.xy) / rect.zw;
+    uv.x - (hover_progress-2.0)*.5;
+    vec4 col = mix(hover_color, main_color, sign(uv.x - hover_progress));
+    col = mix(click_color, col, smoothstep(0.05, 0.9, distance(gl_FragCoord.xy, click_pos)-click_progress*rect.z));
 
     gl_FragColor = col;
 }

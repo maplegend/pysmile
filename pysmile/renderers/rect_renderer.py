@@ -8,4 +8,7 @@ class RectRenderer(Renderer):
         self.color = color
 
     def render(self, entity, rect):
+        glPushMatrix()
+        glColor3f(*self.color.to_float()[:3])
         glRectd(*rect.xy, rect.right, rect.bottom)
+        glPopMatrix()
