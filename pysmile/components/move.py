@@ -9,7 +9,7 @@ from .game.collision_handler import GameCollisionsHandlerComponent
 
 
 class MoveComponent(Component):
-    def __init__(self, acceleration, max_speed, normalize=True, flip=True):
+    def __init__(self, acceleration, max_speed, normalize=True, flip=True, default_collision_check=True):
         """
         Init move component
         :param acceleration: how fast will be velocity increasing
@@ -25,6 +25,7 @@ class MoveComponent(Component):
         self.entity = None
         self.normalize = normalize
         self.flip = flip
+        self.default_collision_check = default_collision_check
 
     def set_direction(self, x, y):
         self.direction = Vector2(x, y)
@@ -55,7 +56,7 @@ class MoveComponent(Component):
         rect = self.entity.get_component(Collider).get_collider()[0]
 
         ch = self.entity.scene.game.get_component(GameCollisionsHandlerComponent)
-        if ch is None:
+        if ch is None or not self.default_collision_check:
             trans.position = trans.pos + self.velocity
             self.direction *= 0
             return
