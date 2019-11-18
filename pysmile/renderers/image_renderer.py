@@ -13,7 +13,6 @@ class ImageRenderer(Renderer):
         if rect.width != self.texture.width or rect.height != self.texture.height:
             newlist = glGenLists(1)
             glNewList(newlist, GL_COMPILE)
-            glLoadIdentity()
 
             if self.rotation is not None and self.rotation != 0:
                 if self.rotation_center is None:
