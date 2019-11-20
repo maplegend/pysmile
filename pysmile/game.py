@@ -11,10 +11,14 @@ from .components.game.game_render import GameRendererComponent
 
 
 class Game(Entity):
-    def __init__(self):
+    def __init__(self, scene=None):
         super().__init__()
 
-        self.scene = Scene(self)
+        if scene is None:
+            self.scene = Scene(self)
+        else:
+            self.scene = scene
+        
         self.cached = []
         self.chash = 0
         self.running = True

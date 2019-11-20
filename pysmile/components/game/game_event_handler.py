@@ -2,6 +2,7 @@ import pygame
 import sys
 from pysmile.game_component import GameComponent
 from pysmile.events.key_press import KeyPressEvent
+from pysmile.events.pygame_event import PyGameEvent
 from .game_event_manager import GameEventManagerComponent
 
 
@@ -16,6 +17,7 @@ class GameEventHandlerComponent(GameComponent):
             return
 
         for event in pygame.event.get():
+            em.trigger_event(PyGameEvent(event))
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
