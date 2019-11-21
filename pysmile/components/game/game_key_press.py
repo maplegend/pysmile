@@ -14,6 +14,6 @@ class GameKeyPressComponent(GameComponent):
         if em is None:
             return
 
-        for i in range(len(pygame.key.get_pressed())):
-            if pygame.key.get_pressed()[i] != 0:
+        for i, k in enumerate(pygame.key.get_pressed()):
+            if k != 0:
                 em.trigger_event(KeyPressedEvent(i))
