@@ -76,6 +76,7 @@ class GLTexture:
     @staticmethod
     def render_texture(texture, size):
         glBindTexture(GL_TEXTURE_2D, texture)
+        glEnable(GL_TEXTURE_2D)
         glBegin(GL_QUADS)
 
         # Bottom Left Of The Texture and Quad
@@ -94,3 +95,4 @@ class GLTexture:
         glTexCoord2f(1, 1)
         glVertex2f(size[0], 0)
         glEnd()
+        glDisable(GL_TEXTURE_2D)

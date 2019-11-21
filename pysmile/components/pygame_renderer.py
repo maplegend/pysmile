@@ -1,6 +1,7 @@
 import pygame
 from .renderer import RendererComponent
 from OpenGL.GL import *
+from pysmile.gl.gl_texture import GLTexture
 
 
 class PyGameRendererComponent(RendererComponent):
@@ -29,22 +30,7 @@ class PyGameRendererComponent(RendererComponent):
             data = pygame.image.tostring(img, "RGBA", 1)
             glTexImage2D(GL_TEXTURE_2D, 0, 4, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, data)
 
-            self.displaylist = glGenLists(1)
-            glNewList(self.displaylist, GL_COMPILE)
-            glBindTexture(GL_TEXTURE_2D, self.texture)
-            glEnable(GL_TEXTURE_2D)
-            glBegin(GL_QUADS)
-            glTexCoord2f(0, 1)
-            glVertex2f(0, 0)
-            glTexCoord2f(1, 1)
-            glVertex2f(0 + w, 0)
-            glTexCoord2f(1, 0)
-            glVertex2f(0 + w, 0 + h)
-            glTexCoord2f(0, 0)
-            glVertex2f(0, 0 + h)
-            glEnd()
-            glDisable(GL_TEXTURE_2D)
-            glEndList()
+            self.displaylist = GLTexture.create_tex_dl(self.texture, w, h)
 
             self.renderer.need_redraw = False
 
