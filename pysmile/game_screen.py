@@ -23,8 +23,8 @@ class GameScreen:
 
         self.size = self.find_best_size(size[0], size[1])
 
-        pygame.display.gl_set_attribute(pygame.GL_CONTEXT_PROFILE_MASK, pygame.GL_CONTEXT_PROFILE_COMPATIBILITY)
-        pygame.display.gl_set_attribute(pygame.GL_CONTEXT_FLAGS, GL_CONTEXT_FLAG_FORWARD_COMPATIBLE_BIT)
+        #pygame.display.gl_set_attribute(pygame.GL_CONTEXT_PROFILE_MASK, pygame.GL_CONTEXT_PROFILE_COMPATIBILITY)
+        #pygame.display.gl_set_attribute(pygame.GL_CONTEXT_FLAGS, GL_CONTEXT_FLAG_FORWARD_COMPATIBLE_BIT)
         #pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MAJOR_VERSION, 3)
         #pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MINOR_VERSION, 1)
 
