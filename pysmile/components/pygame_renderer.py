@@ -5,13 +5,14 @@ from pysmile.gl.gl_texture import GLTexture
 
 
 class PyGameRendererComponent(RendererComponent):
-    def __init__(self, renderer, size):
+    def __init__(self, renderer, size, shader=None):
         """
         Render pygame surface to OpenGL display
         :param renderer: renderer that will be used to render entity
         :param size: entity's size that will be displayed
         """
         super().__init__(renderer, size)
+        self.shader = shader
         self.displaylist = None
         self.texture = None
 
