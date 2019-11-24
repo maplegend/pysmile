@@ -4,7 +4,7 @@ from ..events.key_pressed import KeyPressedEvent
 
 
 class KeyControlComponent(Component):
-    def __init__(self, bindings):
+    def __init__(self, bindings, move_component=MoveComponent):
         """
         Bind specified keys to move player through MoveComponent
         bindings: array of keys that needed to bind [left key, right key, up key, down key]
@@ -12,9 +12,10 @@ class KeyControlComponent(Component):
         super().__init__()
         self.entity = None
         self.bindings = bindings
+        self.move_component = move_component
 
     def key_pressed(self, key_event):
-        move = self.entity.get_component(MoveComponent)
+        move = self.entity.get_component(self.move_component)
         if move and len(self.bindings) >= 4:
             key = key_event.key
             if key in self.bindings[0]:
