@@ -5,10 +5,11 @@ from collections import Iterable
 class Shader:
     uniform_prefix = "uniform_"
 
-    def __init__(self, vertex_code, fragment_code):
+    def __init__(self, vertex_code, fragment_code, inject_rect=True):
         self.program_id = glCreateProgram()
         self.uniforms = {}
         self.using = False
+        self.inject_rect = inject_rect
         vs_id = self.add_shader(vertex_code, GL_VERTEX_SHADER)
         frag_id = self.add_shader(fragment_code, GL_FRAGMENT_SHADER)
 

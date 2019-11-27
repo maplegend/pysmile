@@ -21,7 +21,8 @@ class GameRender:
             if not rend or not trans:
                 continue
             if rend.shader is not None:
-                rend.shader.uniform_rect = (trans.x, screen_size[1] - trans.y - rend.size[1], *rend.size)
+                if rend.shader.inject_rect:
+                    rend.shader.uniform_rect = (trans.x, screen_size[1] - trans.y - rend.size[1], *rend.size)
                 rend.shader.use()
             rend.render(Rect(*trans.xy, *rend.size), ent)
             if rend.shader is not None:
