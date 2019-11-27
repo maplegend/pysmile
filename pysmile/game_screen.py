@@ -28,7 +28,7 @@ class GameScreen:
         #pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MAJOR_VERSION, 3)
         #pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MINOR_VERSION, 1)
 
-        self.screen = pygame.display.set_mode(size, self.display_mod)
+        self.screen = pygame.display.set_mode(self.size, self.display_mod)
         print("Supported shaders version: {}".format(glGetString(GL_SHADING_LANGUAGE_VERSION)))
 
         glClearColor(0.0, 0.0, 0.0, 1.0)
