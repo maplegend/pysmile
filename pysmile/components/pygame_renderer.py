@@ -34,7 +34,7 @@ class PyGameRendererComponent(RendererComponent):
 
             self.displaylist = GLTexture.create_tex_dl(self.texture, w, h)
 
-            if not self.static:
+            if self.static:
                 self.renderer.need_redraw = False
 
         glPushMatrix()
