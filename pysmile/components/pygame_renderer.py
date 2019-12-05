@@ -5,7 +5,7 @@ from pysmile.gl.gl_texture import GLTexture
 
 
 class PyGameRendererComponent(RendererComponent):
-    def __init__(self, renderer, size, shader=None):
+    def __init__(self, renderer, size, static=False, shader=None):
         """
         Render pygame surface to OpenGL display
         :param renderer: renderer that will be used to render entity
@@ -15,6 +15,7 @@ class PyGameRendererComponent(RendererComponent):
         self.shader = shader
         self.displaylist = None
         self.texture = None
+        self.static = static
 
     def render(self, rect, entity):
         if self.renderer.need_redraw:
@@ -33,7 +34,8 @@ class PyGameRendererComponent(RendererComponent):
 
             self.displaylist = GLTexture.create_tex_dl(self.texture, w, h)
 
-            self.renderer.need_redraw = False
+            if not self.static:
+                self.renderer.need_redraw = False
 
         glPushMatrix()
         glColor4fv((1, 1, 1, 1))
