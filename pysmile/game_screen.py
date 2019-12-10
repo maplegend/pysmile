@@ -14,6 +14,9 @@ class GameScreen:
             if (bestx == -1 or bestx >= l[0]) and (besty == -1 or besty >= l[1]):
                 bestx, besty = l[0], l[1]
 
+        if abs(bestx-w)+abs(besty-h) > 500:
+            bestx, besty = w, h
+
         print("resolution: ", bestx, besty)
 
         return bestx, besty
