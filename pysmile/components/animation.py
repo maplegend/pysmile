@@ -25,8 +25,8 @@ class AnimationComponent(Component):
         if (self.start > self.end >= self.progress + self.step) or (
                 self.start <= self.end <= self.progress + self.step):
             self.function(self.interpolate(self.end))
-            self.completion()
             self.entity.remove_component(AnimationComponent)
+            self.completion()
         else:
             self.progress += self.step
             self.function(self.interpolate(self.progress))
